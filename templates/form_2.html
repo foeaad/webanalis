@@ -1,0 +1,154 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+{% block body %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Prediksi Krisis</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Form Data</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" action="{{ url_for('proses') }}" method="POST" name="form">
+                        <div class="card-body">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-4">
+                                <label>Tahun</label>
+                                <select class="form-control" name="tahun" id="tahun">
+                                </select>
+                              </div>
+                              <div class="col-4">
+                                <label>Bulan</label>
+                                <select class="form-control" name="bulan" id="bulan">
+                                </select>
+                              </div>                         
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-4">
+                              <label>Impor</label>
+                              <input type="number" step="any" class="form-control" required name="Impor">
+                              </div>
+                              <div class="col-4">
+                              <label>Ekspor</label>
+                              <input type="number" step="any" class="form-control" required name="Ekspor">
+                              </div>
+                              <div class="col-4">
+                              <label>Cadangan Devisa</label>
+                              <input type="number" step="any" class="form-control" required name="Cadangan_Devisa">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-4">
+                              <label>IHSG</label>
+                              <input type="number" step="any" class="form-control" required name="IHSG">
+                              </div>
+                              <div class="col-4">
+                              <label>Rasio bunga simpanan dan pinjaman</label>
+                              <input type="number" step="any" class="form-control" required name="Rasio_Suku_Bunga_Simpanan_dan_Pinjaman">
+                              </div>
+                              <div class="col-4">
+                              <label>Suku bunga simpanan riil</label>
+                              <input type="number" step="any" class="form-control" required name="Suku_Bunga_Simpanan_Riil">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-4">
+                              <label>Selisih BI rate danFED rate</label>
+                              <input type="number" step="any" class="form-control" required name="Selisih_BI_rate_dan_FED_rate">
+                              </div>
+                              <div class="col-4">
+                              <label>Simpanan bank</label>
+                              <input type="number" step="any" class="form-control" required name="Simpanan_Bank">
+                              </div>
+                              <div class="col-4">
+                              <label>Nilai tukar riil</label>
+                              <input type="number" step="any" class="form-control" required name="Nilai_Tukar_Riil">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-4">
+                              <label>Nilai tukar perdagangan</label>
+                              <input type="number" step="any" class="form-control" required name="Nilai_Tukar_Perdagangan">
+                              </div>
+                              <div class="col-4">
+                              <label>M1</label>
+                              <input type="number" step="any" class="form-control" required name="M1">
+                              </div>
+                              <div class="col-4">
+                              <label>Rasio M2 cadangan devisa</label>
+                              <input type="number" step="any" class="form-control" required name="Rasio_M2_terhadap_Cadangan_Devisa">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-4">
+                              <label>M2 multiplier</label>
+                              <input type="number" step="any" class="form-control" required name="M2_Multiplier">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /.card-body -->
+        
+                        <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    <script src="/static/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var start_year = new Date().getFullYear();
+        $('#tahun option').remove();
+        for (var i = start_year; i >= start_year - 30; i--) {
+          $('#tahun').append($('<option>', {value:i, text:i}));
+        }
+
+        var bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        for (let index = 0; index < bulan.length; index++) {
+          $('#bulan').append($('<option>', {value:index+1, text:bulan[index]}));
+        }
+      });
+    </script>
+
+{% endblock %}
